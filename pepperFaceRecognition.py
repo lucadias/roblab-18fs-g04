@@ -48,7 +48,7 @@ class pepperFaceRecognition(ALModule):
         if not self.isalreadydetecting:
             self.isalreadydetecting = True
             self.tts.say('hello, im taking a picture')
-            time.sleep(2)
+            time.sleep(1)
             picture_path = photoCapture.takePicture(record_folder, file_name, overwrite=True)
             self.tts.say("Snap")
             print(picture_path[0])
