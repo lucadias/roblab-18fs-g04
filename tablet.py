@@ -6,9 +6,41 @@ connection_url = "192.168.1.102:9559"
 app = qi.Application(["--qi-url=" + connection_url])  # Connection to robot
 app.start()
 session = app.session
-# tts = session.service("ALTextToSpeech")
-# tts.say("I like to talk to myself and think about the world of humans.")
+tts = session.service("ALTextToSpeech")
 
+date = "2018-08-15"
+datearr = date.split("-")
+month = int(datearr[1])
+monthName="january"
+if month == 1:
+    monthName = "january"
+elif month == 2:
+    monthName = "february"
+elif month == 3:
+    monthName = "march"
+elif month == 4:
+    monthName = "april"
+elif month == 5:
+    monthName = "may"
+elif month == 6:
+    monthName = "june"
+elif month == 7:
+    monthName = "july"
+elif month == 8:
+    monthName = "august"
+elif month == 9:
+    monthName = "september"
+elif month == 10:
+    monthName = "october"
+elif month == 11:
+    monthName = "november"
+elif month == 12:
+    monthName = "december"
+
+tts.say("Birthday party at "+datearr[2] + "th " +monthName+" " + datearr[0])
+
+
+exit()
 CALLBACK_ID = None
 
 def callback(i, text):

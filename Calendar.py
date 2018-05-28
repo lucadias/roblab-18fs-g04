@@ -23,8 +23,10 @@ class Calendar:
 	_access_token = ""
 	_refresh_token = ""
 
-	def __init__(self):
+	def __init__(self, session):
 		print("Init Calendar")
+		self.session = session
+		self.tts = session.service("ALTextToSpeech")
 
 	def step_1_request_device_code(self):
 		json_data = {
@@ -38,6 +40,22 @@ class Calendar:
 
 	def step_2_show_device_code(self):
 		if self._request.status_code == 200:
+
+			self.tts.say('Please use this Device Code.')
+			self.tablet = self.session.service("ALTabletService")
+
+			self.tablet.showWebview("https://pste.eu/p/RWR5.html")
+
+			script2 = """document.getElementById("title").innerHTML = 'Use this Device Code on <br><small>google.com/device</small><br><br>""" + self._request.json()["user_code"]+ """';"""
+			time.sleep(2)
+			print(script2)
+			print("Update")
+			self.tablet.executeJS(script2)
+			time.sleep(2)
+			self.tablet.executeJS(script2)
+			print("Updated")
+
+
 			print("Please enter this Device Code: " + self._request.json()["user_code"])
 			self._device_code = self._request.json()["device_code"]
 			self._poll_interval = self._request.json()["interval"]
@@ -76,10 +94,13 @@ class Calendar:
 
 			if authorizing:
 				time.sleep(self._poll_interval)
+			else:
+				self.tablet.hideWebview()
 
 
 	def step4_get_calendar(self):
 		req = requests.get(self._base_url + "/users/me/calendarList?access_token=" + self._access_token)
+		print(req.content)
 		self._calendar_id = req.json()["items"][0]["id"]
 		print(self._calendar_id)
 
@@ -92,7 +113,39 @@ class Calendar:
 		print(req.json()["items"][0]["summary"])
 		if "date" in req.json()["items"][0]["start"]:
 			print(req.json()["items"][0]["start"]["date"])
+
+			date = req.json()["items"][0]["start"]["date"]
+			datearr = date.split("-")
+			month = int(datearr[1])
+			monthName = "january"
+			if month == 1:
+				monthName = "january"
+			elif month == 2:
+				monthName = "february"
+			elif month == 3:
+				monthName = "march"
+			elif month == 4:
+				monthName = "april"
+			elif month == 5:
+				monthName = "may"
+			elif month == 6:
+				monthName = "june"
+			elif month == 7:
+				monthName = "july"
+			elif month == 8:
+				monthName = "august"
+			elif month == 9:
+				monthName = "september"
+			elif month == 10:
+				monthName = "october"
+			elif month == 11:
+				monthName = "november"
+			elif month == 12:
+				monthName = "december"
+
+			self.tts.say("Your next event is " + req.json()["items"][0]["summary"] + " at " + datearr[2] + "th " + monthName + " " + datearr[0])
 		elif "datetime" in req.json()["items"][0]["start"]:
+			self.tts.say('Your next event is ' + req.json()["items"][0]["summary"] + " at " + req.json()["items"][0]["start"]["dateTime"])
 			print(req.json()["items"][0]["start"]["dateTime"])
 
 

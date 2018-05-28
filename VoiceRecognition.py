@@ -9,12 +9,7 @@ class VoiceRecognition:
 
 	do_recognition = False
 
-	def __init__(self):
-
-		connection_url = "192.168.1.102:9559"
-		app = qi.Application(["--qi-url=" + connection_url])  # Connection to robot
-		app.start()
-		session = app.session
+	def __init__(self, session):
 
 		memory = session.service("ALMemory")
 		self.speech_subscriber = memory.subscriber("WordRecognized")
@@ -29,7 +24,7 @@ class VoiceRecognition:
 
 
 		tts = session.service("ALTextToSpeech")
-		tts.say("Do you like to introduce yourself?")
+		tts.say("Do you want to connect your google calendar?")
 
 	def start_recognition(self):
 		self.do_recognition = True
