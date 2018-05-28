@@ -1,7 +1,6 @@
 import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import db
-from Person import Person
 
 
 # pip install firebase-admin
@@ -25,19 +24,19 @@ class Database:
 		self._persons_ref = db.reference("persons")
 
 	def save_person(self, person):
-		ref = self._persons_ref.child(person._id)
+		ref = self._persons_ref.child(person["personid"])
 		ref.set(person)
 
 	def get_person(self, person_id):
 		per = self._persons_ref.child(person_id).get()
-		newPerson = Person(per["id"], per["name"], per["google_calendar"], per["iot"])
-		return newPerson
+		#newPerson = Person(per["id"], per["name"], per["google_calendar"], per["iot"])
+		return per
 
 
 if __name__ == "__main__":
     print("Start Database")
     db_sec = Database()
 
-    db_sec.save_person(Person("2", "Benjamin", True, False))
+    db_sec.save_person({"id":"2","name":"Benjamin","google_calendar":True,"iot":False,"personid":"dsafasdfasdfasdfadf"})
 
-    print db_sec.get_person("2").name
+    print db_sec.get_person("2")["name"]
