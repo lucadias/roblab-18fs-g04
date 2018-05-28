@@ -41,18 +41,18 @@ class Calendar:
 	def step_2_show_device_code(self):
 		if self._request.status_code == 200:
 
-			self.tts.say('Please use this Device Code.')
+			self.tts.say('Okey, please use this Device Code.')
 			self.tablet = self.session.service("ALTabletService")
 
 			self.tablet.showWebview("https://pste.eu/p/RWR5.html")
 
-			script2 = """document.getElementById("title").innerHTML = 'Use this Device Code on <br><small>google.com/device</small><br><br>""" + self._request.json()["user_code"]+ """';"""
+			script = """document.getElementById("title").innerHTML = 'Use this Device Code on <br><small>google.com/device</small><br><br>""" + self._request.json()["user_code"]+ """';"""
 			time.sleep(2)
-			print(script2)
+			print(script)
 			print("Update")
-			self.tablet.executeJS(script2)
+			self.tablet.executeJS(script)
 			time.sleep(2)
-			self.tablet.executeJS(script2)
+			self.tablet.executeJS(script)
 			print("Updated")
 
 
@@ -111,6 +111,7 @@ class Calendar:
 		req = requests.get(url)
 		print(req.content)
 		print(req.json()["items"][0]["summary"])
+		self.tts.say("Thank you")
 		if "date" in req.json()["items"][0]["start"]:
 			print(req.json()["items"][0]["start"]["date"])
 
@@ -148,14 +149,16 @@ class Calendar:
 			self.tts.say('Your next event is ' + req.json()["items"][0]["summary"] + " at " + req.json()["items"][0]["start"]["dateTime"])
 			print(req.json()["items"][0]["start"]["dateTime"])
 
+		self.tts.say("Have a nice day")
+
 
 if __name__ == "__main__":
     print("Start Calendar")
     cal = Calendar()
-    #cal.step_1_request_device_code()
-    #cal.step_2_show_device_code()
-    #cal.step_3_poll_for_authorization()
-    cal._access_token = "ya29.GlvJBVRc8-Ao5AjYg_vX9vry27mSK-gj9DajxBPCbUopJ0fI-w7XsjBvogWF1YT-fcgNNBxkPAyMa_L6aiQhwiHlZeWt37PjUntzgwKwOnXp1oyudcmmbXG5xrZm"
+    cal.step_1_request_device_code()
+    cal.step_2_show_device_code()
+    cal.step_3_poll_for_authorization()
+    #cal._access_token = "ya29.GlvJBVRc8-Ao5AjYg_vX9vry27mSK-gj9DajxBPCbUopJ0fI-w7XsjBvogWF1YT-fcgNNBxkPAyMa_L6aiQhwiHlZeWt37PjUntzgwKwOnXp1oyudcmmbXG5xrZm"
     if cal._access_token != "":
     	cal.step4_get_calendar()
     	cal.step5_get_next_event()

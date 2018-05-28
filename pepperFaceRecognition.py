@@ -65,7 +65,7 @@ class pepperFaceRecognition(ALModule):
                 self.tts.say("I dont know you yet. Do you want to tell me your name?")
                 self.newPerson()
             else:
-                self.tts.say("im looking for your name")
+                self.tts.say("I'm looking for your name")
                 personName = afa.getPerson(responseidentify)
                 self.tts.say("hello" +personName);
 
@@ -73,6 +73,8 @@ class pepperFaceRecognition(ALModule):
                     self.tts.say("I'm preparing your work place")
                     mystrom = MyStrom()
                     mystrom.turn_mystrom_on("192.168.1.193")
+
+                self.tts.say("Have a nice day " + personName)
 
                 time.sleep(2)
                 self.isalreadydetecting = False #TODO change with google
