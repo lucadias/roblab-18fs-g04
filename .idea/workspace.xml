@@ -66,8 +66,8 @@
       <file leaf-file-name="pepperFaceRecognition.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/pepperFaceRecognition.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="434">
-              <caret line="120" column="21" selection-start-line="120" selection-start-column="21" selection-end-line="120" selection-end-column="21" />
+            <state relative-caret-position="162">
+              <caret line="104" column="68" lean-forward="true" selection-start-line="104" selection-start-column="68" selection-end-line="104" selection-end-column="68" />
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
               </folding>
@@ -197,10 +197,10 @@
     <packageJsonPaths />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="512" />
-    <option name="y" value="-13" />
-    <option name="width" value="2452" />
-    <option name="height" value="1752" />
+    <option name="x" value="511" />
+    <option name="y" value="-14" />
+    <option name="width" value="2454" />
+    <option name="height" value="1754" />
   </component>
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="1" id="Add" />
@@ -399,16 +399,15 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1728" height="1127" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Python Console" order="7" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32843137" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32843137" />
       <window_info anchor="bottom" id="Terminal" order="7" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.20186698" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20186698" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info anchor="right" id="SciView" order="3" />
@@ -713,8 +712,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pepperFaceRecognition.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="434">
-          <caret line="120" column="21" selection-start-line="120" selection-start-column="21" selection-end-line="120" selection-end-column="21" />
+        <state relative-caret-position="162">
+          <caret line="104" column="68" lean-forward="true" selection-start-line="104" selection-start-column="68" selection-end-line="104" selection-end-column="68" />
           <folding>
             <element signature="e#0#13#0" expanded="true" />
           </folding>
